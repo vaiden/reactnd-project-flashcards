@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "reactnd-project-flashcards",
+    "slug": "reactnd-project-flashcards",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "reactnd-project-flashcards"
+}
