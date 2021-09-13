@@ -47,12 +47,14 @@ class DeckList extends Component{
     }
 }
 
-function mapStateToProps(state){
+function mapStateToProps({decks}){
+    console.log('THE STATE IS ', decks);
+
     return {
-        decks: Object.keys(state).map( key => {
+        decks: Object.keys(decks).filter(key => key !== "_persist").map( key => {
           return {
-              title: state[key].title,
-              cardCount: state[key].questions.length,
+              title: decks[key].title,
+              cardCount: decks[key].questions.length,
               key
           }
         })

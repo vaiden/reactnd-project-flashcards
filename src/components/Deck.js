@@ -39,14 +39,14 @@ class Deck extends Component{
     }
 }
 
-function mapStateToProps( state , { route }){
+function mapStateToProps({decks} , { route }){
 
     const key = route.params.deckId;
 
     return{
         deck: {
-            title: state[key].title,
-            cardCount: state[key].questions.length,
+            title: decks[key].title,
+            cardCount: decks[key].questions.length,
             key
         }
     }
