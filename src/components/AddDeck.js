@@ -1,6 +1,9 @@
 import React, {Component} from "react";
 import {Text, TextInput, TouchableOpacity, View} from "react-native";
 import TextButton from "./TextButton";
+import {addDeck} from "../actions";
+import * as Screens from '../consts/Screens'
+import {connect} from "react-redux";
 
 class AddDeck extends Component{
     state = {
@@ -14,7 +17,26 @@ class AddDeck extends Component{
     }
 
     onSubmit = () => {
-        console.log('Submitting', this.state.deckName);
+        const { navigation, addDeck } = this.props;
+        const deckId = this.state.deckName;
+
+        this.setState({
+            deckName:''
+        });
+
+        addDeck( deckId );
+        navigation.navigate(
+            Screens.DeckList,
+            {
+                deckId
+            }
+        );
+        navigation.navigate(
+          Screens.Deck,
+            {
+                deckId
+            }
+        );
     }
 
     render(){
@@ -24,6 +46,7 @@ class AddDeck extends Component{
                     What is the name of your new deck?
                 </Text>
                 <TextInput
+                    value={this.state.deckName}
                     onChangeText={this.onChangeText}
                     />
                 <TextButton
@@ -37,4 +60,8 @@ class AddDeck extends Component{
     }
 }
 
-export default AddDeck
+const mapDispatchToProps = {
+    addDeck
+}
+
+export default connect(null, mapDispatchToProps)(AddDeck)

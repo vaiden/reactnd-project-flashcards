@@ -1,10 +1,10 @@
 import fakeData from "../../fakedata.json"
-import {ADD_CRAD} from "../actions";
+import {ADD_CARD, ADD_DECK} from "../actions";
 
 function decks(state = fakeData, action){
 
     switch ( action.type ){
-        case ADD_CRAD:
+        case ADD_CARD:
             return {
                 ...state,
                 [action.deckId]:{
@@ -12,6 +12,18 @@ function decks(state = fakeData, action){
                     questions: state[action.deckId].questions.concat([action.question])
                 }
             }
+        case ADD_DECK:
+            const retState = {
+                ...state,
+                [action.deckId]:{
+                    title: action.deckId,
+                    questions: [],
+                    ...state[action.deckId]
+                }
+            }
+
+            console.log(retState);
+            return retState;
         default:
             return state
     }

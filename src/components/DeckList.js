@@ -48,10 +48,8 @@ class DeckList extends Component{
 }
 
 function mapStateToProps({decks}){
-    console.log('THE STATE IS ', decks);
-
     return {
-        decks: Object.keys(decks).filter(key => key !== "_persist").map( key => {
+        decks: Object.keys(decks).filter(key => key !== "_persist").sort().map( key => {
           return {
               title: decks[key].title,
               cardCount: decks[key].questions.length,
