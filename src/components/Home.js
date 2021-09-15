@@ -1,6 +1,6 @@
 import React from "react";
 import {Platform} from "react-native";
-import {purple, white} from "../utils/colors";
+import {blueSapphire, purple, white} from "../utils/colors";
 import {FontAwesome, MaterialCommunityIcons} from "@expo/vector-icons";
 import {createMaterialTopTabNavigator} from "@react-navigation/material-top-tabs";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
@@ -18,13 +18,13 @@ export default function Home(){
             screenOptions={{
                 headerShown: false,
                 tabBarActiveTintColor: Platform.select({
-                    ios: purple,
+                    ios: blueSapphire,
                     android: white
                 }),
                 tabBarStyle:{
                     backgroundColor: Platform.select({
                         ios: white,
-                        android: purple
+                        android: blueSapphire
                     }),
                     shadowColor: 'rgba(0, 0, 0, 0.24)',
                     shadowOffset: {

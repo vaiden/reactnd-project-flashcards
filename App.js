@@ -5,7 +5,7 @@ import {NavigationContainer} from "@react-navigation/native";
 import Home from "./src/components/Home";
 import {Provider} from "react-redux";
 import {createStackNavigator} from "@react-navigation/stack";
-import {purple, white} from "./src/utils/colors";
+import {blueSapphire, purple, white} from "./src/utils/colors";
 import Deck from "./src/components/Deck";
 import * as Screens from './src/consts/Screens'
 import AddCard from "./src/components/AddCard";
@@ -29,28 +29,20 @@ export default class App extends Component {
                     <View style={styles.container}>
                         <UdaciStatusBar barStyle='light-content'/>
                         <NavigationContainer>
-                            <Stack.Navigator>
+                            <Stack.Navigator
+                                screenOptions={{
+                                    headerTintColor: white,
+                                    headerStyle: {
+                                        backgroundColor: blueSapphire
+                                    }
+                                }}
+                            >
                                 <Stack.Screen name={Screens.Home} component={Home} options={{
                                     headerShown: false
                                 }}/>
-                                <Stack.Screen name={Screens.Deck} component={Deck} options={{
-                                    headerTintColor: white,
-                                    headerStyle: {
-                                        backgroundColor: purple
-                                    }
-                                }}/>
-                                <Stack.Screen name={Screens.AddCard} component={AddCard} options={{
-                                    headerTintColor: white,
-                                    headerStyle: {
-                                        backgroundColor: purple
-                                    }
-                                }}/>
-                                <Stack.Screen name={Screens.Quiz} component={Quiz} options={{
-                                    headerTintColor: white,
-                                    headerStyle: {
-                                        backgroundColor: purple
-                                    }
-                                }}/>
+                                <Stack.Screen name={Screens.Deck} component={Deck} />
+                                <Stack.Screen name={Screens.AddCard} component={AddCard} />
+                                <Stack.Screen name={Screens.Quiz} component={Quiz} />
                             </Stack.Navigator>
                         </NavigationContainer>
                     </View>

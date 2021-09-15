@@ -1,10 +1,9 @@
 import React, {Component} from "react";
-import {FlatList, Text, View} from "react-native";
+import {FlatList, StyleSheet, Text, View} from "react-native";
 import {connect} from "react-redux";
 import DeckListItem from "./DeckListItem";
-import {green} from "react-native-reanimated/src/reanimated2/Colors";
-import {gray} from "../utils/colors";
 import * as Screens from '../consts/Screens'
+import {gray, lilachLuster} from "../utils/colors";
 
 class DeckList extends Component{
 
@@ -39,13 +38,23 @@ class DeckList extends Component{
                     renderItem={
                         ({ item }) => <DeckListItem name={item.title} count={item.cardCount} onPress={this.onPress(item.key)}/>
                     }
-                    ItemSeparatorComponent={props => <View style={{height:1, backgroundColor: gray, marginLeft: 10, marginRight: 10, marginTop: 2, marginBottom: 2}}/>}
+                    ItemSeparatorComponent={props => <View style={styles.separator}/>}
                     keyExtractor={item => item.key}
                 />
             </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    separator: {
+        height:1,
+        backgroundColor: lilachLuster,
+        marginLeft: 10,
+        marginRight: 10,
+        marginTop: 2,
+        marginBottom: 2}
+})
 
 function mapStateToProps({decks}){
     return {
