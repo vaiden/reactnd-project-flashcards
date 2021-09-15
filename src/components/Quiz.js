@@ -49,7 +49,10 @@ class Quiz extends Component{
 
         if ( showResults ){
             return (
-                <QuizResults percentage={100 / cardCount * correctCount} onRestart={this.onRestart} navigation={navigation}/>
+                <QuizResults
+                    percentage={100 / cardCount * correctCount}
+                    onRestart={this.onRestart}
+                    navigation={navigation}/>
             )
         }
 
