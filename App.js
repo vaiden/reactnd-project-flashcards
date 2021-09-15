@@ -7,7 +7,7 @@ import {Provider} from "react-redux";
 import {createStackNavigator} from "@react-navigation/stack";
 import {blueSapphire, purple, white} from "./src/utils/colors";
 import Deck from "./src/components/Deck";
-import * as Screens from './src/consts/Screens'
+import * as screens from './src/consts/screens'
 import AddCard from "./src/components/AddCard";
 import {PersistGate} from "redux-persist/integration/react";
 import Quiz from "./src/components/Quiz";
@@ -37,12 +37,12 @@ export default class App extends Component {
                                     }
                                 }}
                             >
-                                <Stack.Screen name={Screens.Home} component={Home} options={{
+                                <Stack.Screen name={screens.Home} component={Home} options={{
                                     headerShown: false
                                 }}/>
-                                <Stack.Screen name={Screens.Deck} component={Deck} />
-                                <Stack.Screen name={Screens.AddCard} component={AddCard} />
-                                <Stack.Screen name={Screens.Quiz} component={Quiz} />
+                                <Stack.Screen name={screens.Deck} component={Deck} />
+                                <Stack.Screen name={screens.AddCard} component={AddCard} />
+                                <Stack.Screen name={screens.Quiz} component={Quiz} />
                             </Stack.Navigator>
                         </NavigationContainer>
                     </View>

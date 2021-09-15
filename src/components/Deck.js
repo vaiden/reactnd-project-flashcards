@@ -1,15 +1,17 @@
 import React, {Component} from "react";
-import {Text, View} from "react-native";
+import {StyleSheet, Text, View} from "react-native";
 import {connect} from "react-redux";
 import TextButton from "./TextButton";
-import * as Screens from '../consts/Screens'
+import * as screens from '../consts/screens'
+import {grayWeb} from "../utils/colors";
+import Strong from "./Strong";
 
 class Deck extends Component{
 
     onAddCard = () => {
         const { deck, navigation } = this.props;
         navigation.navigate(
-            Screens.AddCard,
+            screens.AddCard,
             {
                 deckId: deck.key
             }
@@ -19,7 +21,7 @@ class Deck extends Component{
     onStartQuiz= () => {
         const { deck, navigation } = this.props;
         navigation.navigate(
-            Screens.Quiz,
+            screens.Quiz,
             {
                 deckId: deck.key
             }
@@ -31,17 +33,23 @@ class Deck extends Component{
         const { deck } = this.props;
 
         return (
-            <View style={{flex:1}}>
-                <Text>
-                    {deck.title}
+            <View style={styles.container}>
+                <Text style={styles.text}>
+                    <Strong>{deck.title}</Strong>
                 </Text>
-                <Text>
-                    {deck.cardCount} cards
+                <Text style={styles.text}>
+                    {deck.cardCount} card{deck.cardCount>1? 's' : ''}
                 </Text>
-                <TextButton onPress={this.onAddCard}>
+                <TextButton
+                    onPress={this.onAddCard}
+                    style={{marginTop:16}}
+                >
                     Add Card
                 </TextButton>
-                <TextButton onPress={this.onStartQuiz}>
+                <TextButton
+                    onPress={this.onStartQuiz}
+                    style={{marginTop:8}}
+                >
                     Start Quiz
                 </TextButton>
             </View>
@@ -49,8 +57,22 @@ class Deck extends Component{
     }
 }
 
-function mapStateToProps({decks} , { route }){
+const styles = StyleSheet.create({
+    container:{
+        flex:1
+    },
+    text:{
+        fontSize: 20,
+        paddingTop: 8,
+        paddingLeft: 8,
+        paddingRight: 8,
+        paddingBottom: 4,
+        color: grayWeb,
+        textAlign:'center'
+    },
+})
 
+function mapStateToProps({decks} , { route }){
     const key = route.params.deckId;
 
     return{

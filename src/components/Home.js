@@ -1,12 +1,12 @@
 import React from "react";
 import {Platform} from "react-native";
-import {blueSapphire, purple, white} from "../utils/colors";
+import {blueSapphire, white} from "../utils/colors";
 import {FontAwesome, MaterialCommunityIcons} from "@expo/vector-icons";
 import {createMaterialTopTabNavigator} from "@react-navigation/material-top-tabs";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import DeckList from "./DeckList";
 import AddDeck from "./AddDeck";
-import * as Screens from '../consts/Screens'
+import * as screens from '../consts/screens'
 
 const Tab = Platform.OS === 'android'
     ? createMaterialTopTabNavigator()
@@ -35,11 +35,11 @@ export default function Home(){
                     shadowOpacity: 1
                 }
             }}>
-            <Tab.Screen name={Screens.DeckList} component={DeckList} options={{
+            <Tab.Screen name={screens.DeckList} component={DeckList} options={{
                 tabBarLabel: 'DeckList',
                 tabBarIcon: ({ focused, color, size }) => <MaterialCommunityIcons name='cards' size={size} color={color}/>
             }}/>
-            <Tab.Screen name={Screens.AddDeck} component={AddDeck} options={{
+            <Tab.Screen name={screens.AddDeck} component={AddDeck} options={{
                 tabBarLabel: 'Add Deck',
                 tabBarIcon: ({ focused, color, size }) => <FontAwesome name='plus-square' size={size} color={color} />
             }}/>

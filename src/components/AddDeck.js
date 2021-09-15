@@ -1,9 +1,10 @@
 import React, {Component} from "react";
-import {Text, TextInput, TouchableOpacity, View} from "react-native";
+import {StyleSheet, Text, TextInput, View} from "react-native";
 import TextButton from "./TextButton";
 import {addDeck} from "../actions";
-import * as Screens from '../consts/Screens'
+import * as screens from '../consts/screens'
 import {connect} from "react-redux";
+import {grayWeb, lilachLuster} from "../utils/colors";
 
 class AddDeck extends Component{
     state = {
@@ -26,13 +27,13 @@ class AddDeck extends Component{
 
         addDeck( deckId );
         navigation.navigate(
-            Screens.DeckList,
+            screens.DeckList,
             {
                 deckId
             }
         );
         navigation.navigate(
-          Screens.Deck,
+          screens.Deck,
             {
                 deckId
             }
@@ -41,17 +42,19 @@ class AddDeck extends Component{
 
     render(){
         return (
-            <View>
-                <Text>
+            <View style={styles.container}>
+                <Text style={styles.text}>
                     What is the title of your new deck?
                 </Text>
                 <TextInput
                     value={this.state.deckName}
                     onChangeText={this.onChangeText}
+                    style={styles.textInput}
                     />
                 <TextButton
                     onPress={this.onSubmit}
                     disabled={this.state.deckName === ''}
+                    style={{marginTop: 16}}
                 >
                     Add
                 </TextButton>
@@ -59,6 +62,34 @@ class AddDeck extends Component{
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container:{
+        flex:1
+    },
+    text:{
+        fontSize: 20,
+        paddingTop: 8,
+        paddingLeft: 8,
+        paddingRight: 8,
+        paddingBottom: 4,
+        color: grayWeb
+    },
+    textInput:{
+        fontSize: 20,
+        color: grayWeb,
+        alignSelf: 'stretch',
+
+        marginTop: 8,
+        marginLeft: 16,
+        marginRight: 16,
+        paddingLeft: 4,
+        paddingRight: 4,
+
+        borderBottomColor: lilachLuster,
+        borderBottomWidth: 2
+    }
+})
 
 const mapDispatchToProps = {
     addDeck

@@ -1,8 +1,10 @@
 import React, {Component} from "react";
-import {Text, View} from "react-native";
+import {StyleSheet, Text, View} from "react-native";
 import {connect} from "react-redux";
 import QuizQuestion from "./QuizQuestion";
 import QuizResults from "./QuizResults";
+import {grayWeb, lilachLuster} from "../utils/colors";
+import Strong from "./Strong";
 
 class Quiz extends Component{
 
@@ -39,9 +41,9 @@ class Quiz extends Component{
 
         if ( cardCount === 0){
             return (
-                <View>
-                    <Text>
-                        No cards in this deck. You can easily add some.
+                <View style={styles.center}>
+                    <Text style={styles.text}>
+                        No cards in this deck.{'\n'}You can easily add some.
                     </Text>
                 </View>
             )
@@ -57,15 +59,43 @@ class Quiz extends Component{
         }
 
         return (
-            <View>
-                <Text>
-                    {cardIndex+1}/{cardCount}
+            <View style={styles.container}>
+                <Text style={styles.textIndex}>
+                    <Strong>(</Strong>{cardIndex+1}<Strong>/</Strong>{cardCount}<Strong>)</Strong>
                 </Text>
-                <QuizQuestion card={deck.questions[cardIndex]} onSelection={this.onSelection()}/>
+                <QuizQuestion
+                    card={deck.questions[cardIndex]}
+                    onSelection={this.onSelection()}/>
             </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    center: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginLeft: 30,
+        marginRight: 30
+    },
+    text: {
+        fontSize: 20,
+        paddingTop: 8,
+        paddingBottom: 4,
+        color: grayWeb,
+        textAlign: 'center'
+    },
+    textIndex:{
+        fontSize: 20,
+        paddingTop: 8,
+        paddingBottom: 4,
+        color: lilachLuster,
+    },
+});
 
 function mapStateToProps(state, props){
     const { route } = props;
