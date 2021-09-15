@@ -16,6 +16,16 @@ class Deck extends Component{
         )
     }
 
+    onStartQuiz= () => {
+        const { deck, navigation } = this.props;
+        navigation.navigate(
+            Screens.Quiz,
+            {
+                deckId: deck.key
+            }
+        )
+    }
+
     render(){
 
         const { deck } = this.props;
@@ -31,7 +41,7 @@ class Deck extends Component{
                 <TextButton onPress={this.onAddCard}>
                     Add Card
                 </TextButton>
-                <TextButton disabled={deck.cardCount === 0}>
+                <TextButton onPress={this.onStartQuiz}>
                     Start Quiz
                 </TextButton>
             </View>

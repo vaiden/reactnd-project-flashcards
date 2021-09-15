@@ -43,7 +43,7 @@ class AddDeck extends Component{
         return (
             <View>
                 <Text>
-                    What is the name of your new deck?
+                    What is the title of your new deck?
                 </Text>
                 <TextInput
                     value={this.state.deckName}

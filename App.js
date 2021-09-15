@@ -1,9 +1,8 @@
 import 'react-native-gesture-handler'; // MUST be the first line
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import UdaciStatusBar from "./src/components/UdaciStatusBar";
 import {NavigationContainer} from "@react-navigation/native";
-import UdaciTabNavigator from "./src/components/UdaciTabNavigator";
+import Home from "./src/components/Home";
 import {Provider} from "react-redux";
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import reducer from './src/reducers'
@@ -17,6 +16,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { persistStore, persistReducer } from 'redux-persist';
 import thunk from "redux-thunk";
 import {PersistGate} from "redux-persist/integration/react";
+import Quiz from "./src/components/Quiz";
+import UdaciStatusBar from "./src/components/UdaciStatusBar";
 
 const persistConfig = {
     key: 'udaciflashcards.decks',
@@ -40,7 +41,7 @@ export default function App() {
               <UdaciStatusBar  barStyle='light-content'/>
               <NavigationContainer>
                   <Stack.Navigator>
-                      <Stack.Screen name={Screens.Home} component={UdaciTabNavigator} options={{
+                      <Stack.Screen name={Screens.Home} component={Home} options={{
                           headerShown: false
                       }}/>
                       <Stack.Screen name={Screens.Deck} component={Deck} options={{
@@ -50,6 +51,12 @@ export default function App() {
                           }
                       }}/>
                       <Stack.Screen name={Screens.AddCard} component={AddCard} options={{
+                          headerTintColor: white,
+                          headerStyle: {
+                              backgroundColor: purple
+                          }
+                      }}/>
+                      <Stack.Screen name={Screens.Quiz} component={Quiz} options={{
                           headerTintColor: white,
                           headerStyle: {
                               backgroundColor: purple

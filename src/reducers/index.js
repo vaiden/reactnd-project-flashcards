@@ -13,7 +13,7 @@ function decks(state = fakeData, action){
                 }
             }
         case ADD_DECK:
-            const retState = {
+            return {
                 ...state,
                 [action.deckId]:{
                     title: action.deckId,
@@ -21,9 +21,6 @@ function decks(state = fakeData, action){
                     ...state[action.deckId]
                 }
             }
-
-            console.log(retState);
-            return retState;
         default:
             return state
     }
