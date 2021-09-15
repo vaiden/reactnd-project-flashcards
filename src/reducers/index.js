@@ -1,7 +1,6 @@
-import fakeData from "../../fakedata.json"
 import {ADD_CARD, ADD_DECK} from "../actions";
 
-function decks(state = fakeData, action){
+function decks(state = {}, action){
 
     switch ( action.type ){
         case ADD_CARD:

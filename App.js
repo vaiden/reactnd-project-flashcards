@@ -4,33 +4,17 @@ import { StyleSheet, Text, View } from 'react-native';
 import {NavigationContainer} from "@react-navigation/native";
 import Home from "./src/components/Home";
 import {Provider} from "react-redux";
-import {applyMiddleware, combineReducers, createStore} from "redux";
-import reducer from './src/reducers'
 import {createStackNavigator} from "@react-navigation/stack";
 import {purple, white} from "./src/utils/colors";
 import Deck from "./src/components/Deck";
 import * as Screens from './src/consts/Screens'
 import AddCard from "./src/components/AddCard";
-
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { persistStore, persistReducer } from 'redux-persist';
-import thunk from "redux-thunk";
 import {PersistGate} from "redux-persist/integration/react";
 import Quiz from "./src/components/Quiz";
 import UdaciStatusBar from "./src/components/UdaciStatusBar";
+import {createPersistentStore} from "./src/utils/helpers";
 
-const persistConfig = {
-    key: 'udaciflashcards.decks',
-    storage: AsyncStorage,
-    version: 1
-};
-
-const rootReducer = combineReducers({
-    decks: persistReducer(persistConfig, reducer)
-});
-const store = createStore(rootReducer, applyMiddleware(thunk));
-const persistor = persistStore(store);
-
+const { store, persistor } = createPersistentStore()
 const Stack = createStackNavigator();
 
 export default function App() {
